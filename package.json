@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "json-server": "^0.16.3",
+    "lodash": "^4.17.21",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "^5.0.1",
