@@ -11,15 +11,15 @@ function QuestionForm({ onAddQuestion }) {
   });
 
   function handleChange(event) {
-    const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
+
     const newQuestion = {
       prompt: formData.prompt,
       answers: [
@@ -28,18 +28,17 @@ function QuestionForm({ onAddQuestion }) {
         formData.answer3,
         formData.answer4,
       ],
-      correctIndex: parseInt(formData.correctIndex),
+      correctIndex: parseInt(formData.correctIndex, 10),
     };
 
     fetch("http://localhost:4000/questions", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newQuestion),
     })
       .then((response) => response.json())
-      .then((data) => onAddQuestion(data));
+      .then((data) => onAddQuestion(data))
+      .catch((error) => console.error("Error adding question:", error));
   }
 
   return (

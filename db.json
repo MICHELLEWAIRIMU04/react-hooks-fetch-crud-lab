@@ -32,6 +32,17 @@
         "ES6"
       ],
       "correctIndex": 1
+    },
+    {
+      "prompt": "",
+      "answers": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "correctIndex": 0,
+      "id": 5
     }
   ]
 }
