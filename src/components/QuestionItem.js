@@ -14,6 +14,8 @@ function QuestionItem({ question, onDelete, onUpdateCorrectAnswer }) {
     onUpdateCorrectAnswer(id, newCorrectIndex);
   }
 
+  
+
   return (
     <li>
       <h4>Question {id}</h4>

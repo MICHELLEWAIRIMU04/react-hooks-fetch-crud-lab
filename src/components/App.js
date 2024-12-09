@@ -5,7 +5,7 @@ import QuestionList from "./QuestionList";
 
 function App() {
   const [page, setPage] = useState("List");
-  const [ setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([]);
 
   function handleAddQuestion(newQuestion) {
     setQuestions((prevQuestions) => [...prevQuestions, newQuestion]);
@@ -17,7 +17,7 @@ function App() {
       {page === "Form" ? (
         <QuestionForm onAddQuestion={handleAddQuestion} />
       ) : (
-        <QuestionList />
+        <QuestionList questions={questions} setQuestions={setQuestions} />
       )}
     </main>
   );
