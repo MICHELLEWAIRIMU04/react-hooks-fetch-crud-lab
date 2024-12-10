@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
-function QuestionItem({ question, onDelete, onUpdateCorrectAnswer }) {
+function QuestionItem({ question, onDelete }) {
   const { id, prompt, answers, correctIndex } = question;
+  const [selectedCorrectIndex, setSelectedCorrectIndex] = useState(correctIndex);
 
   const options = answers.map((answer, index) => (
     <option key={index} value={index}>
@@ -9,12 +10,20 @@ function QuestionItem({ question, onDelete, onUpdateCorrectAnswer }) {
     </option>
   ));
 
-  function handleChange(event) {
-    const newCorrectIndex = parseInt(event.target.value, 10);
-    onUpdateCorrectAnswer(id, newCorrectIndex);
-  }
+  const handleChangeCorrectAnswer = (event) => {
+    const newCorrectIndex = parseInt(event.target.value);
+    setSelectedCorrectIndex(newCorrectIndex);
 
-  
+    fetch(`http://localhost:4000/questions/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        correctIndex: newCorrectIndex,
+      }),
+    });
+  };
 
   return (
     <li>
@@ -22,7 +31,10 @@ function QuestionItem({ question, onDelete, onUpdateCorrectAnswer }) {
       <h5>Prompt: {prompt}</h5>
       <label>
         Correct Answer:
-        <select value={correctIndex} onChange={handleChange}>
+        <select
+          value={selectedCorrectIndex}
+          onChange={handleChangeCorrectAnswer}
+        >
           {options}
         </select>
       </label>

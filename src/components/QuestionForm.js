@@ -28,17 +28,29 @@ function QuestionForm({ onAddQuestion }) {
         formData.answer3,
         formData.answer4,
       ],
-      correctIndex: parseInt(formData.correctIndex, 10),
+      correctIndex: parseInt(formData.correctIndex),
     };
 
     fetch("http://localhost:4000/questions", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(newQuestion),
     })
       .then((response) => response.json())
-      .then((data) => onAddQuestion(data))
-      .catch((error) => console.error("Error adding question:", error));
+      .then((data) => {
+        onAddQuestion(data); // Update the list of questions in the parent component
+      });
+
+    setFormData({
+      prompt: "",
+      answer1: "",
+      answer2: "",
+      answer3: "",
+      answer4: "",
+      correctIndex: 0,
+    });
   }
 
   return (

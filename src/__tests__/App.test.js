@@ -31,19 +31,19 @@ test("creates a new question when the form is submitted", async () => {
   await screen.findByText(/lorem testum 1/g);
 
   // click form page
-  fireEvent.click(screen.queryByText("New Question"));
+  fireEvent.click(await screen.queryByText("New Question"));
 
   // fill out form
-  fireEvent.change(screen.queryByLabelText(/Prompt/), {
+  fireEvent.change(await screen.queryByLabelText(/Prompt/), {
     target: { value: "Test Prompt" },
   });
-  fireEvent.change(screen.queryByLabelText(/Answer 1/), {
+  fireEvent.change(await screen.queryByLabelText(/Answer 1/), {
     target: { value: "Test Answer 1" },
   });
-  fireEvent.change(screen.queryByLabelText(/Answer 2/), {
+  fireEvent.change(await screen.queryByLabelText(/Answer 2/), {
     target: { value: "Test Answer 2" },
   });
-  fireEvent.change(screen.queryByLabelText(/Correct Answer/), {
+  fireEvent.change(await screen.queryByLabelText(/Correct Answer/), {
     target: { value: "1" },
   });
 

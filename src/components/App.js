@@ -7,9 +7,9 @@ function App() {
   const [page, setPage] = useState("List");
   const [questions, setQuestions] = useState([]);
 
-  function handleAddQuestion(newQuestion) {
+  const handleAddQuestion = (newQuestion) => {
     setQuestions((prevQuestions) => [...prevQuestions, newQuestion]);
-  }
+  };
 
   return (
     <main>
@@ -24,4 +24,3 @@ function App() {
 }
 
 export default App;
-
